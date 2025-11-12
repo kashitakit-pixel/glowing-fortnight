@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>คู่มือเจ้าหน้าที่ - แนวทางสนับสนุนผู้ดูแล</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Fonts: Sarabun + Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Sarabun:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    body {
+      font-family: 'Sarabun', 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    }
+    /* Modal base state */
+    .modal-overlay {
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .25s ease, visibility .25s ease;
+    }
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .modal-box {
+      transform: translateY(12px) scale(.98);
+      transition: transform .25s ease;
+    }
+    .modal-overlay.active .modal-box {
+      transform: translateY(0) scale(1);
+    }
+    /* Soft focus ring */
+    .focus-soft:focus {
+      outline: none;
+      box-shadow: 0 0 0 4px rgba(59, 130, 246, .25);
+    }
+    /* Custom list styles for modals */
+    .modal-content ul {
+      list-style-type: disc;
+      list-style-position: outside;
+      margin-left: 1.5rem;
+      margin-top: 0.5rem;
+    }
+    .modal-content li {
+      margin-bottom: 0.5rem;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-[radial-gradient(ellipse_at_top_left,theme(colors.pink.50),transparent_40%),radial-gradient(ellipse_at_bottom_right,theme(colors.cyan.50),transparent_40%)] text-slate-800">
+  
+  <!-- Header -->
+  <header class="relative">
+    <div class="absolute inset-0 bg-gradient-to-r from-rose-100/60 via-emerald-100/60 to-sky-100/60"></div>
+    <div class="relative max-w-4xl mx-auto px-4 sm:px-6 py-8">
+      <div class="flex items-center gap-4">
+        <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-white shadow-md grid place-items-center text-2xl">🗂️</div>
+        <div>
+          <p class="text-sm text-slate-500">เครื่องมือสำหรับเจ้าหน้าที่</p>
+          <h1 class="text-2xl sm:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-emerald-700 to-sky-700 leading-tight">
+            แนวทางสนับสนุนผู้ดูแล
+          </h1>
+        </div>
+      </div>
+      <p class="text-slate-600 mt-4">เลือกหัวข้อด้านล่าง เพื่อดูแนวทางการสนทนาและให้คำแนะนำแก่ผู้ดูแล</p>
+    </div>
+  </header>
+
+  <!-- Main dashboard cards -->
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 pb-16">
+    <section class="mt-8 grid grid-cols-2 gap-4 sm:gap-6">
+      
+      <!-- Card: Body health -->
+      <button class="modal-trigger group text-left bg-white p-5 sm:p-6 rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-0.5 transition cursor-pointer focus-soft" data-modal-target="modal-health" aria-haspopup="dialog">
+        <div class="flex items-center gap-3">
+          <span class="text-4xl sm:text-5xl">🏃‍♂️</span>
+          <div>
+            <h2 class="text-xl sm:text-2xl font-bold text-emerald-700">สุขภาพกาย</h2>
+            <p class="text-sm text-slate-500">การนอน • อาหาร • การขยับตัว</p>
+          </div>
+        </div>
+        <div class="mt-4 flex items-center gap-2 text-emerald-700/80 text-sm">
+          <span>แนวทางการแนะนำ</span>
+        </div>
+      </button>
+
+      <!-- Card: Mind -->
+      <button class="modal-trigger group text-left bg-white p-5 sm:p-6 rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-0.5 transition cursor-pointer focus-soft" data-modal-target="modal-mind" aria-haspopup="dialog">
+        <div class="flex items-center gap-3">
+          <span class="text-4xl sm:text-5xl">🧘‍♀️</span>
+          <div>
+            <h2 class="text-xl sm:text-2xl font-bold text-sky-700">สุขภาพใจ</h2>
+            <p class="text-sm text-slate-500">อารมณ์ • การพัก • การประเมิน</q>
+          </div>
+        </div>
+        <div class="mt-4 flex items-center gap-2 text-sky-700/80 text-sm">
+          <span>แนวทางการแนะนำ</span>
+        </div>
+      </button>
+
+      <!-- Card: Finance -->
+      <button class="modal-trigger group text-left bg-white p-5 sm:p-6 rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-0.5 transition cursor-pointer focus-soft" data-modal-target="modal-finance" aria-haspopup="dialog">
+        <div class="flex items-center gap-3">
+          <span class="text-4xl sm:text-5xl">💰</span>
+          <div>
+            <h2 class="text-xl sm:text-2xl font-bold text-amber-700">การเงิน</h2>
+            <p class="text-sm text-slate-500">รายรับ-รายจ่าย • สิทธิ • เงินสำรอง</p>
+          </div>
+        </div>
+        <div class="mt-4 flex items-center gap-2 text-amber-700/80 text-sm">
+          <span>แนวทางการแนะนำ</span>
+        </div>
+      </button>
+
+      <!-- Card: Relations -->
+      <button class="modal-trigger group text-left bg-white p-5 sm:p-6 rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-0.5 transition cursor-pointer focus-soft" data-modal-target="modal-relations" aria-haspopup="dialog">
+        <div class="flex items-center gap-3">
+          <span class="text-4xl sm:text-5xl">🤝</span>
+          <div>
+            <h2 class="text-xl sm:text-2xl font-bold text-rose-700">ความสัมพันธ์</h2>
+            <p class="text-sm text-slate-500">การสื่อสาร • การช่วยเหลือ • เพื่อนร่วมทาง</p>
+          </div>
+        </div>
+        <div class="mt-4 flex items-center gap-2 text-rose-700/80 text-sm">
+          <span>แนวทางการแนะนำ</span>
+        </div>
+      </button>
+    </section>
+
+    <!-- Resource Links -->
+    <section class="mt-8">
+      <h3 class="text-lg font-semibold mb-3 text-slate-700">แหล่งข้อมูลสนับสนุน</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <a href="https://checkin.dmh.go.th/" target="_blank" rel="noopener" class="rounded-xl bg-white shadow p-3 text-center text-sm text-sky-700 font-semibold hover:shadow-md transition">
+          แบบประเมินใจ (DMH Check-in)
+        </a>
+        <a href="tel:1323" class="rounded-xl bg-white shadow p-3 text-center text-sm text-rose-700 font-semibold hover:shadow-md transition">
+          สายด่วนสุขภาพจิต 1323
+        </a>
+        <a href="tel:1300" class="rounded-xl bg-white shadow p-3 text-center text-sm text-amber-700 font-semibold hover:shadow-md transition">
+          สายด่วนช่วยเหลือสังคม 1300
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="mt-16 pb-8 px-4">
+    <p class="text-center text-sm text-slate-500">อบอุ่นใจ © 2025 - เครื่องมือสนับสนุนสำหรับเจ้าหน้าที่</p>
+  </footer>
+
+  <!-- ========= MODALS ========= -->
+  <!-- Modal: Health -->
+  <div id="modal-health" class="modal-overlay fixed inset-0 bg-slate-900/50 backdrop-blur-sm p-4 sm:p-6 z-50 flex items-center justify-center">
+    <div class="modal-box w-full max-w-2xl bg-white rounded-2xl shadow-xl overflow-hidden">
+      <!-- Modal Header -->
+      <div class="flex items-start justify-between p-5 sm:p-6 bg-emerald-50 border-b border-emerald-200">
+        <div>
+          <h3 class="text-xl sm:text-2xl font-bold text-emerald-800">แนวทาง: สุขภาพกาย</h3>
+          <p class="text-sm text-emerald-600">เป้าหมาย: ช่วยให้ผู้ดูแลตระหนักถึงสุขภาพกายและหาวิธีจัดการที่ทำได้จริง</p>
+        </div>
+        <button class="modal-close-btn w-9 h-9 grid place-items-center rounded-full text-slate-500 hover:bg-slate-200 focus-soft" aria-label="ปิด">
+          <svg class="w-5 h-5" fill="none" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+      </div>
+      <!-- Modal Content -->
+      <div class="modal-content p-5 sm:p-6 max-h-[60vh] overflow-y-auto text-slate-700">
+        <img src="https://lh3.googleusercontent.com/d/1VRuW1w1HCeN--G_q8L9L6Oyhb1YPPCxj" alt="ภาพประกอบสุขภาพดี" class="w-full h-auto max-h-48 object-contain rounded-lg mb-4" onerror="this.alt='ภาพประกอบสุขภาพดี'; this.src='https://placehold.co/600x200/e0f2f1/065f46?text=Health';">
+        <h4 class="font-semibold text-emerald-700">ประเด็นชวนคุย (Talking Points)</h4>
+        <ul>
+          <li>"ช่วงนี้คุณได้นอนหลับพักผ่อนเพียงพอไหม? (คุณภาพการนอนเป็นอย่างไร)"</li>
+          <li>"คุณได้ทานอาหารตรงเวลาบ้างหรือเปล่า? ส่วนใหญ่ทานอะไร?"</li>
+          <li>"มีอาการปวดเมื่อยตามร่างกายตรงไหนบ้างไหม?"</li>
+          <li>"ในแต่ละวัน คุณได้ขยับร่างกายบ้างไหม? (เช่น ลุกเดิน, ยืดเส้น)"</li>
+        </ul>
+
+        <h4 class="font-semibold text-emerald-700 mt-4">ข้อแนะนำสำหรับผู้ดูแล (Suggestions)</h4>
+        <ul>
+          <li><strong>การนอน:</strong> แนะนำให้พยายามหา "ช่วงงีบสั้นๆ" (15-20 นาที) ระหว่างวัน ถ้านอนยาวตอนกลางคืนไม่ได้</li>
+          <li><strong>อาหาร:</strong> แนะนำให้ "เตรียมอาหาร/น้ำดื่ม" ไว้ใกล้ตัว ทานง่ายๆ แต่มีประโยชน์ (เช่น กล้วย, ไข่ต้ม)</li>
+          <li><strong>การขยับตัว:</strong> แนะนำท่ายืดเหยียดง่ายๆ 5 นาทีที่ทำได้ข้างเตียงผู้ป่วย หรือชวนลุกเดินเปลี่ยนอิริยาบถ</li>
+          <li><strong>ส่งต่อ:</strong> แนะนำ "แอปอบอุ่นใจ" (แอปเดิม) ให้เขาไปลองใช้ฟีเจอร์ "ฝึกหายใจ" หรือ "ยืดเหยียด"</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Mind -->
+  <div id="modal-mind" class="modal-overlay fixed inset-0 bg-slate-900/50 backdrop-blur-sm p-4 sm:p-6 z-50 flex items-center justify-center">
+    <div class="modal-box w-full max-w-2xl bg-white rounded-2xl shadow-xl overflow-hidden">
+      <!-- Modal Header -->
+      <div class="flex items-start justify-between p-5 sm:p-6 bg-sky-50 border-b border-sky-200">
+        <div>
+          <h3 class="text-xl sm:text-2xl font-bold text-sky-800">แนวทาง: สุขภาพใจ</h3>
+          <p class="text-sm text-sky-600">เป้าหมาย: ช่วยให้ผู้ดูแลรับรู้อารมณ์, จัดการความเครียด และหาเวลาพักใจสั้นๆ</p>
+        </div>
+        <button class="modal-close-btn w-9 h-9 grid place-items-center rounded-full text-slate-500 hover:bg-slate-200 focus-soft" aria-label="ปิด">
+          <svg class="w-5 h-5" fill="none" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+      </div>
+      <!-- Modal Content -->
+      <div class="modal-content p-5 sm:p-6 max-h-[60vh] overflow-y-auto text-slate-700">
+        <img src="https://lh3.googleusercontent.com/d/1PSzgK544a9MVT46iAFpv1-_OqvTMDARo" alt="ภาพประกอบจิตใจ" class="w-full h-auto max-h-48 object-contain rounded-lg mb-4" onerror="this.alt='ภาพประกอบจิตใจ'; this.src='https://placehold.co/600x200/e0f2f1/065f46?text=Mind';">
+        <h4 class="font-semibold text-sky-700">ประเด็นชวนคุย (Talking Points)</h4>
+        <ul>
+          <li>"วันนี้คุณรู้สึกอย่างไรบ้าง? (ให้เขาระบุอารมณ์ เช่น เหนื่อย, กังวล, โกรธ)"</li>
+          <li>"มีเรื่องอะไรที่ทำให้คุณเครียดหรือกังวลใจเป็นพิเศษไหม?"</li>
+          <li>"คุณได้มีเวลา 'พัก' ให้ตัวเองบ้างไหม? แม้จะแค่ 5 นาที"</li>
+          <li>"ครั้งสุดท้ายที่คุณรู้สึกผ่อนคลายคือเมื่อไหร่?"</li>
+        </ul>
+
+        <h4 class="font-semibold text-sky-700 mt-4">ข้อแนะนำสำหรับผู้ดูแล (Suggestions)</h4>
+        <ul>
+          <li><strong>รับรู้อารมณ์:</strong> ย้ำเตือนว่า "ไม่เป็นไรที่จะรู้สึก..." (เหนื่อย, โกรธ, ท้อ) การที่คุณรู้สึก ไม่ได้แปลว่าคุณเป็นผู้ดูแลที่ไม่ดี</li>
+          <li><strong>พักสั้นๆ:</strong> ชวน "กำหนดลมหายใจ" 1-3 นาที (อาจทำไปพร้อมกันเลย) หรือให้ลองใช้ฟีเจอร์ในแอปเดิม</li>
+          <li><strong>ระบาย:</strong> แนะนำให้ "เขียนบันทึก" ความรู้สึกสั้นๆ หรือพูดคุยกับคนที่ไว้ใจ</li>
+          <li><strong>ประเมินตนเอง:</strong> แนะนำให้ลองทำแบบประเมิน "DMH Check-in" เพื่อดูระดับความเครียด และย้ำว่ามีสายด่วน 1323 หากรู้สึกไม่ไหว</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Finance -->
+  <div id="modal-finance" class="modal-overlay fixed inset-0 bg-slate-900/50 backdrop-blur-sm p-4 sm:p-6 z-50 flex items-center justify-center">
+    <div class="modal-box w-full max-w-2xl bg-white rounded-2xl shadow-xl overflow-hidden">
+      <!-- Modal Header -->
+      <div class="flex items-start justify-between p-5 sm:p-6 bg-amber-50 border-b border-amber-200">
+        <div>
+          <h3 class="text-xl sm:text-2xl font-bold text-amber-800">แนวทาง: การเงิน</h3>
+          <p class="text-sm text-amber-600">เป้าหมาย: ช่วยลดความกังวลด้านการเงิน โดยการสำรวจสิทธิและวางแผนเท่าที่ทำได้</p>
+        </div>
+        <button class="modal-close-btn w-9 h-9 grid place-items-center rounded-full text-slate-500 hover:bg-slate-200 focus-soft" aria-label="ปิด">
+          <svg class="w-5 h-5" fill="none" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+      </div>
+      <!-- Modal Content -->
+      <div class="modal-content p-5 sm:p-6 max-h-[60vh] overflow-y-auto text-slate-700">
+        <img src="https://lh3.googleusercontent.com/d/1g44BJ2Z6YN65-ddpcGbHIA16__GPz8Xs" alt="ภาพประกอบการเงิน" class="w-full h-auto max-h-48 object-contain rounded-lg mb-4" onerror="this.alt='ภาพประกอบการเงิน'; this.src='https://placehold.co/600x200/e0f2f1/065f46?text=Finance';">
+        <h4 class="font-semibold text-amber-700">ประเด็นชวนคุย (Talking Points)</h4>
+        <ul>
+          <li>"เรื่องค่าใช้จ่ายในการดูแล ถือเป็นภาระหนักสำหรับคุณไหม?"</li>
+          <li>"คุณทราบสิทธิการรักษาพยาบาล (เช่น บัตรทอง, ประกันสังคม) ของผู้ป่วย/ของคุณ ครบถ้วนไหม?"</li>
+          <li>"คุณมีเงินสำรองฉุกเฉินเผื่อไว้บ้างหรือเปล่า?"</li>
+          <li>"การดูแลนี้กระทบกับรายได้หลักของคุณมากน้อยแค่ไหน?"</li>
+        </ul>
+
+        <h4 class="font-semibold text-amber-700 mt-4">ข้อแนะนำสำหรับผู้ดูแล (Suggestions)</h4>
+        <ul>
+          <li><strong>สำรวจสิทธิ:</strong> ช่วยตรวจสอบสิทธิประโยชน์ที่ผู้ดูแลและผู้ป่วยพึงมี (สิทธิคนพิการ, สวัสดิการต่างๆ)</li>
+          <li><strong>บันทึกง่ายๆ:</strong> แนะนำให้จด "รายจ่ายที่เกี่ยวกับการดูแล" แยกไว้ เพื่อให้เห็นภาพรวม</li>
+          <li><strong>วางแผน:</strong> ชวนคุยเรื่อง "แผนสำรอง" หากเกิดเหตุฉุกเฉิน (เช่น ใครจะดูแลแทน, ค่าใช้จ่าย)</li>
+          <li><strong>ส่งต่อ:</strong> หากพบปัญหาซับซ้อน ให้ข้อมูล "สายด่วนช่วยเหลือสังคม 1300" หรือนักสังคมสงเคราะห์</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Relations -->
+  <div id="modal-relations" class="modal-overlay fixed inset-0 bg-slate-900/50 backdrop-blur-sm p-4 sm:p-6 z-50 flex items-center justify-center">
+    <div class="modal-box w-full max-w-2xl bg-white rounded-2xl shadow-xl overflow-hidden">
+      <!-- Modal Header -->
+      <div class="flex items-start justify-between p-5 sm:p-6 bg-rose-50 border-b border-rose-200">
+        <div>
+          <h3 class="text-xl sm:text-2xl font-bold text-rose-800">แนวทาง: ความสัมพันธ์</h3>
+          <p class="text-sm text-rose-600">เป้าหมาย: ช่วยให้ผู้ดูแลลดความโดดเดี่ยว, กล้าสื่อสาร และรู้วิธีขอความช่วยเหลือ</p>
+        </div>
+        <button class="modal-close-btn w-9 h-9 grid place-items-center rounded-full text-slate-500 hover:bg-slate-200 focus-soft" aria-label="ปิด">
+          <svg class="w-5 h-5" fill="none" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+      </div>
+      <!-- Modal Content -->
+      <div class="modal-content p-5 sm:p-6 max-h-[60vh] overflow-y-auto text-slate-700">
+        <img src="https://lh3.googleusercontent.com/d/1cOOJvj5Opp2okD66z5eLOKJMGLiTMCNr" alt="ภาพประกอบความสัมพันธ์" class="w-full h-auto max-h-48 object-contain rounded-lg mb-4" onerror="this.alt='ภาพประกอบความสัมพันธ์'; this.src='https://placehold.co/600x200/e0f2f1/065f46?text=Relations';">
+        <h4 class="font-semibold text-rose-700">ประเด็นชวนคุย (Talking Points)</h4>
+        <ul>
+          <li>"ปกติคุณได้พูดคุยเรื่องอื่น (ที่ไม่ใช่เรื่องป่วย) กับใครบ้างไหม?"</li>
+          <li>"คุณรู้สึกโดดเดี่ยวในการดูแลครั้งนี้ไหม?"</li>
+          <li>"ในครอบครัว/เพื่อน มีใครที่พอจะช่วยแบ่งเบาภาระคุณได้บ้างไหม?"</li>
+          <li>"คุณได้บอกคนอื่นไหมว่าคุณรู้สึกอย่างไร หรือต้องการความช่วยเหลืออะไร?"</li>
+        </ul>
+
+        <h4 class="font-semibold text-rose-700 mt-4">ข้อแนะนำสำหรับผู้ดูแล (Suggestions)</h4>
+        <ul>
+          <li><strong>สื่อสาร:</strong> แนะนำการสื่อสารแบบ "I-Message" (เช่น "ฉันรู้สึกเหนื่อย" แทน "ทำไมเธอไม่ช่วยเลย")</li>
+          <li><strong>ขอความช่วยเหลือ:</strong> ช่วยผู้ดูแล "ลิสต์สิ่งที่คนอื่นช่วยได้" (เช่น ช่วยซื้อของ, ช่วยเฝ้า 1 ชม.) การขอความช่วยเหลือแบบเจาะจงจะง่ายกว่า</li>
+          <li><strong>เชื่อมต่อ:</strong> ชวนให้ "ติดต่อเพื่อน" 1 คนในสัปดาห์นี้ แค่ 5-10 นาทีก็ยังดี</li>
+          <li><strong>กลุ่มสนับสนุน:</strong> แนะนำ "กลุ่มผู้ดูแล" (Caregiver Support Group) ถ้ามีในพื้นที่หรือทางออนไลน์ เพื่อให้รู้ว่าเขาไม่ได้อยู่คนเดียว</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // === Modal Logic ===
+      const allTriggers = document.querySelectorAll(".modal-trigger");
+      const allModals = document.querySelectorAll(".modal-overlay");
+      const allCloseButtons = document.querySelectorAll(".modal-close-btn");
+
+      // Function to open a modal
+      const openModal = (modalId) => {
+        const modal = document.getElementById(modalId);
+        if (modal) {
+          modal.classList.add("active");
+          // Focus on the close button for accessibility
+          modal.querySelector(".modal-close-btn").focus();
+        }
+      };
+
+      // Function to close a modal
+      const closeModal = (modal) => {
+        if (modal) {
+          modal.classList.remove("active");
+        }
+      };
+
+      // Add click listener to all triggers
+      allTriggers.forEach((trigger) => {
+        trigger.addEventListener("click", () => {
+          const modalId = trigger.getAttribute("data-modal-target");
+          openModal(modalId);
+        });
+      });
+
+      // Add click listener to all close buttons
+      allCloseButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          closeModal(button.closest(".modal-overlay"));
+        });
+      });
+
+      // Add click listener to modal overlays (to close by clicking outside)
+      allModals.forEach((modal) => {
+        modal.addEventListener("click", (e) => {
+          // Check if the click is on the overlay itself (not the box inside)
+          if (e.target === modal) {
+            closeModal(modal);
+          }
+        });
+        
+        // Add keydown listener for "Escape" key
+        document.addEventListener('keydown', (e) => {
+          if (e.key === "Escape" && modal.classList.contains("active")) {
+            closeModal(modal);
+          }
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
